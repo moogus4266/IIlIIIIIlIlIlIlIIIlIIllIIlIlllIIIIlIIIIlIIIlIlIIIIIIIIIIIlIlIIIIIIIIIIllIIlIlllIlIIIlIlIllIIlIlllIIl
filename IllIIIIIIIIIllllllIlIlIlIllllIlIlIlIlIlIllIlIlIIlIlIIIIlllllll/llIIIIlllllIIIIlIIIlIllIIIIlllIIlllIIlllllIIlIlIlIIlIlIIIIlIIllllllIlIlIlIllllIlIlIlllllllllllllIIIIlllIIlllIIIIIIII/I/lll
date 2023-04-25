@@ -1,0 +1,50 @@
+
+
+function fakechat(player, toSay)
+
+    local Adornee = player.Character
+   
+    if not Adornee then
+        return
+    end
+   
+    game:GetService("Chat"):ChatLocal(Adornee, toSay, Enum.ChatColor.White)
+end
+
+function findPlayer(toFind)
+    if not toFind or not tostring(toFind) then
+        return
+    end
+
+    toFind = toFind:lower()
+   
+    local target
+
+    for _, player in pairs(game:GetService('Players'):GetPlayers()) do
+        if not player.Name:lower():find(toFind) then
+            continue
+        end
+
+        target = player
+       
+        break
+    end
+   
+    return target
+end
+
+local target = findPlayer(game.Players.LocalPlayer.Name)  if not target then
+    return
+end
+
+local whateveruwanthemtosay = 'Wibbily Jiggily Boobs'
+
+fakechat(target, whateveruwanthemtosay)
+wait(0.2) -- ON THE CHAT
+local StarterGui = game:GetService("StarterGui") -- Make sure this LOCAL SCRIPT is in StarterGui!
+game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage",{
+	Text = "["..game.Players.LocalPlayer.Name.."]: Jiggily Wiggily Boobs"; -- Required. Has to be a string!
+	Color = Color3.new(255, 255, 255); -- Cyan is (0,255/255,255/255) -- Optional defaults to white: Color3.new(255/255, 255/255, 243/255)
+	Font = Enum.Font.SourceSansBold; -- Optional, defaults to Enum.Font.SourceSansBold
+	FontSize = Enum.FontSize.Size24; -- Optional, defaults to Enum.FontSize.Size18
+})
